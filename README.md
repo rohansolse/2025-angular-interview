@@ -1,59 +1,55 @@
-# MyAngularApp
+# 2025-angular-interview
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.1.
+Interactive Angular playground that demonstrates change detection strategies, the CDK virtual scroll viewport, and using Web Workers to offload expensive calculations. Built with Angular CLI 19.1.1.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **Home landing page** with quick navigation to every demo route.
+- **User list demo** (`/users`) shows how `ChangeDetectionStrategy.OnPush` works with manual immutability and a `trackBy` function. Open DevTools to see how only the appended user logs on each click.
+- **Virtual scroll demo** (`/virtual-scroll`) renders 5,000 generated users via `cdk-virtual-scroll-viewport`, demonstrating how the DOM stays light while you scroll through large data sets.
+- **Web worker demo** (`/worker-demo`) spins up `heavy-computation.worker.ts` to perform CPU-intensive math (50M iterations) without freezing the UI, reporting the duration when complete.
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Getting started
 
 ```bash
-ng generate component component-name
+npm install
+npm run start # or: ng serve
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The dev server runs on `http://localhost:4200/`. Any component or worker change reloads automatically.
 
-```bash
-ng generate --help
+## Available scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run start` | Serve the app locally with live reload. |
+| `npm run build` | Produce an optimized production build in `dist/`. |
+| `npm run test` | Execute the Karma unit test suite. |
+
+## Navigating the demos
+
+1. Launch the dev server and open the browser.
+2. Use the header buttons (Home, User List, Virtual Scroll Example, Web Worker Example) to switch between routes.
+3. For the User List route, watch the console to understand how `trackBy` prevents re-rendering existing rows.
+4. For the Virtual Scroll route, inspect the DOM while scrolling to confirm that only visible rows render (`itemSize` matches the CSS height).
+5. For the Web Worker route, click "Start Calculation" and observe how the UI stays responsive while the worker logs its progress and returns the result.
+
+## Project structure
+
+```
+src/app/
+  app.routes.ts          # Route map pointing to each standalone component
+  components/
+    home/                # Simple landing view
+    user-list/           # OnPush + trackBy demo
+    virtual-scroll-list/ # CDK virtual scroll demo backed by UserService
+    worker-demo/         # Worker client that posts messages to heavy-computation.worker.ts
+  services/user.service.ts
+  workers/heavy-computation.worker.ts
 ```
 
-## Building
+## Additional resources
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Angular documentation](https://angular.dev)
+- [Angular CDK ScrollingModule](https://material.angular.io/cdk/scrolling/overview)
+- [Web Workers in Angular](https://angular.dev/tools/cli/workers)
