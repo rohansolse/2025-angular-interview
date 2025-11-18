@@ -1,0 +1,15 @@
+<h2>User List with OnPush + trackBy</h2>
+<p>
+  Open your browser's developer console. When the component loads, you'll see
+  <code>trackBy</code> log for each user. When you click "Add User", you'll see
+  the log only for the new user, proving Angular isn't re-rendering the whole
+  list.
+</p>
+
+<button (click)="addUser()">Add User</button>
+
+<ul>
+  <li *ngFor="let user of users; trackBy: trackByUser">
+    ID: {{ user.id }} - Name: {{ user.name }}
+  </li>
+</ul>
