@@ -1,0 +1,16 @@
+<h2>User List with CDK Virtual Scroll</h2>
+<p>
+  This list contains <strong>{{ users.length }}</strong> items, but the DOM only renders the visible ones.
+  Inspect the DOM elements while you scroll to see it in action.
+</p>
+
+<!--
+  - cdk-virtual-scroll-viewport: The container for the virtual scroll.
+  - itemSize: The height of each item in pixels. This is crucial for the CDK to calculate which items to render.
+-->
+<cdk-virtual-scroll-viewport itemSize="40" class="viewport">
+  <!-- *cdkVirtualFor is the virtual scroll equivalent of *ngFor -->
+  <div *cdkVirtualFor="let user of users; trackBy: trackById" class="item">
+    {{ user.name }} (ID: {{ user.id }})
+  </div>
+</cdk-virtual-scroll-viewport>
