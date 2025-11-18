@@ -1,0 +1,13 @@
+<h2>Web Worker Demo</h2>
+<p>
+  Click the button below to start a heavy computation in a background thread.
+  The UI will remain responsive, and you can interact with other parts of the
+  page while it runs.
+</p>
+
+<button (click)="startCalculation()" [disabled]="status === 'Calculating...'">
+  Start Heavy Calculation
+</button>
+
+<p><strong>Status:</strong> {{ status }}</p>
+<p *ngIf="result"><strong>Result:</strong> {{ result }}</p>
