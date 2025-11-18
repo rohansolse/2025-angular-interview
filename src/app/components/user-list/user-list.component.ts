@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { User } from '../interface/user';
+import { User } from '../../interface/user';
 
 @Component({
   selector: 'app-user-list',
