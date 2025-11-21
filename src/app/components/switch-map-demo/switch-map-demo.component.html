@@ -1,0 +1,44 @@
+<section class="demo">
+  <h2>Why switchMap?</h2>
+  <p>
+    switchMap swaps the current inner Observable with the new one, canceling the previous request/stream when new input arrives.
+    Click the buttons below to see the difference with simulated network delay.
+  </p>
+
+  <div class="columns">
+    <div class="card">
+      <h3>Before switchMap (nested subscribe)</h3>
+      <p>Old requests are not canceled, so late responses can override newer clicks.</p>
+      <div class="actions">
+        <button (click)="beforeFetch('Alpha')">Fetch Alpha</button>
+        <button (click)="beforeFetch('Beta')">Fetch Beta</button>
+      </div>
+      <ul>
+        <li *ngFor="let entry of beforeResults">{{ entry }}</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>After switchMap</h3>
+      <p>Previous requests are canceled; only the latest result appears.</p>
+      <div class="actions">
+        <button (click)="afterSearch('Alpha')">Fetch Alpha</button>
+        <button (click)="afterSearch('Beta')">Fetch Beta</button>
+      </div>
+      <div class="result" *ngIf="afterResult$ | async as result; else waiting">
+        {{ result }}
+      </div>
+      <ng-template #waiting>
+        <div class="result muted">Click a button to start</div>
+      </ng-template>
+    </div>
+  </div>
+
+  <h3>Before switchMap (code)</h3>
+  <pre><code>{{ beforeSnippet }}</code></pre>
+  <p>Problems: nested subscriptions, manual cleanup, old requests can still emit if a new route param arrives.</p>
+
+  <h3>After switchMap (code)</h3>
+  <pre><code>{{ afterSnippet }}</code></pre>
+  <p>Benefits: flat stream, automatic cancellation of prior requests, easier error handling, and works nicely with async pipe.</p>
+</section>
