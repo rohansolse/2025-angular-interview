@@ -1,0 +1,15 @@
+<div class="parent">
+  <h3>Parent Component (using @ViewChild)</h3>
+
+  <div class="controls">
+    <input [(ngModel)]="inputMessage" placeholder="Type message to send to child" />
+    <button (click)="setChildMessage()">Set Child Message</button>
+    <button (click)="callChildIncrement()">Increment Child Count</button>
+    <button (click)="showChildStatus()">Show Child Status</button>
+  </div>
+
+  <hr />
+
+  <!-- Child component instance that @ViewChild will access -->
+  <app-child></app-child>
+</div>
