@@ -1,0 +1,20 @@
+<!-- Use a single object for the async pipe -->
+<div class="user-profile" *ngIf="userProfile$ | async as profile; else loadingOrError">
+  <h2>{{ profile.name }}'s Profile</h2>
+  <p>Email: {{ profile.email }}</p>
+
+  <h3>Address</h3>
+  <p>{{ profile.address.street }}, {{ profile.address.city }}</p>
+
+  <h3>Recent Orders (Total: {{ profile.orderTotal | currency }})</h3>
+  <ul>
+    <li *ngFor="let order of profile.orders">
+      Order #{{ order.id }} - {{ order.amount | currency }}
+    </li>
+  </ul>
+</div>
+
+<ng-template #loadingOrError>
+  <div *ngIf="error; else loading">Error: {{ error }}</div>
+  <ng-template #loading>Loading...</ng-template>
+</ng-template>

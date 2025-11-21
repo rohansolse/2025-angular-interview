@@ -1,0 +1,23 @@
+.user-profile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 420px;
+}
+
+.user-profile h2 {
+  margin-bottom: 0.25rem;
+}
+
+.user-profile h3 {
+  margin: 0.5rem 0 0.25rem;
+}
+
+.user-profile p {
+  margin: 0;
+}
+
+.user-profile ul {
+  margin: 0.25rem 0 0;
+  padding-left: 1.25rem;
+}
