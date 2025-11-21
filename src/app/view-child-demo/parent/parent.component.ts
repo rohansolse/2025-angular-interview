@@ -1,14 +1,19 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { ChildComponent } from './child.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ChildComponent } from '../child/child.component';
 
 @Component({
   selector: 'app-parent',
+  standalone: true,
+  imports: [CommonModule, FormsModule, ChildComponent],
   templateUrl: './parent.component.html',
-  styleUrls: ['./parent.component.css']
+  styleUrls: ['./parent.component.css'],
 })
 export class ParentComponent implements AfterViewInit {
   @ViewChild(ChildComponent, { static: false }) child!: ChildComponent;
   inputMessage = '';
+  notificationMessage: string | null = null;
 
   ngAfterViewInit() {
     // child reference available here
@@ -24,6 +29,9 @@ export class ParentComponent implements AfterViewInit {
   }
 
   showChildStatus() {
-    alert(this.child?.getStatus() ?? 'Child not available');
+    this.notificationMessage = this.child?.getStatus() ?? 'Child not available';
+    setTimeout(() => {
+      this.notificationMessage = null;
+    }, 5000);
   }
 }

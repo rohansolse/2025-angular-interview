@@ -5,6 +5,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { VirtualScrollListComponent } from './components/virtual-scroll-list/virtual-scroll-list.component';
 import { WorkerDemoComponent } from './components/worker-demo/worker-demo.component';
 import { SwitchMapDemoComponent } from './components/switch-map-demo/switch-map-demo.component';
+import { ParentComponent } from './view-child-demo/parent/parent.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -29,4 +30,6 @@ export const routes: Routes = [
     path: 'switch-map-demo',
     component: SwitchMapDemoComponent,
   },
+
+  { path: 'view-child', component: ParentComponent },
 ];
